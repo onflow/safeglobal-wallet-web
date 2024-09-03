@@ -10,9 +10,6 @@ const NO_SIDEBAR_ROUTES = [
   AppRoutes.welcome.index,
   AppRoutes.welcome.accounts,
   AppRoutes.imprint,
-  AppRoutes.privacy,
-  AppRoutes.cookie,
-  AppRoutes.terms,
   AppRoutes.licenses,
 ]
 

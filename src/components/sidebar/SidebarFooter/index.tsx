@@ -47,34 +47,6 @@ const SidebarFooter = (): ReactElement => {
           <DebugToggle />
         </ListItem>
       )}
-
-      <Track {...OVERVIEW_EVENTS.WHATS_NEW}>
-        <ListItem disablePadding>
-          <SidebarListItemButton id={BEAMER_SELECTOR} onClick={handleBeamer}>
-            <SidebarListItemIcon color="primary">
-              <BeamerIcon />
-            </SidebarListItemIcon>
-            <SidebarListItemText data-testid="list-item-whats-new" bold>
-              What&apos;s new
-            </SidebarListItemText>
-          </SidebarListItemButton>
-        </ListItem>
-      </Track>
-
-      <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
-        <ListItem disablePadding>
-          <a target="_blank" rel="noopener noreferrer" href={HELP_CENTER_URL} style={{ width: '100%' }}>
-            <SidebarListItemButton>
-              <SidebarListItemIcon color="primary">
-                <HelpCenterIcon />
-              </SidebarListItemIcon>
-              <SidebarListItemText data-testid="list-item-need-help" bold>
-                Need help?
-              </SidebarListItemText>
-            </SidebarListItemButton>
-          </a>
-        </ListItem>
-      </Track>
     </SidebarList>
   )
 }
