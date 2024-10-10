@@ -8,7 +8,7 @@ import { AppRoutes } from '@/config/routes'
 import packageJson from '../../../../package.json'
 import ExternalLink from '../ExternalLink'
 import MUILink from '@mui/material/Link'
-import { DISCORD_URL, IS_DEV, IS_OFFICIAL_HOST, TWITTER_URL } from '@/config/constants'
+import { DISCORD_URL, HELP_CENTER_URL, IS_DEV, IS_OFFICIAL_HOST, TWITTER_URL } from '@/config/constants'
 
 const footerPages = [
   AppRoutes.welcome.index,
@@ -77,11 +77,11 @@ const Footer = (): ReactElement | null => {
             <li>
               <FooterLink href={getHref(AppRoutes.settings.index)}>Preferences</FooterLink>
             </li>
-            {/* <li>
+            <li>
               <ExternalLink href={HELP_CENTER_URL} noIcon sx={{ span: { textDecoration: 'underline' } }}>
                 Help
               </ExternalLink>
-            </li> */}
+            </li>
           </>
         ) : (
           <li>This is an unofficial distribution of Flow Safe</li>
