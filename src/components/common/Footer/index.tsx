@@ -11,7 +11,6 @@ import MUILink from '@mui/material/Link'
 import { DISCORD_URL, HELP_CENTER_URL, IS_DEV, IS_OFFICIAL_HOST, TWITTER_URL } from '@/config/constants'
 import darkPalette from '@/components/theme/darkPalette'
 import ProtofireLogo from '@/public/images/protofire-logo.svg'
-import AppstoreButton from '../AppStoreButton'
 
 const footerPages = [
   AppRoutes.welcome.index,
@@ -94,9 +93,6 @@ const Footer = (): ReactElement | null => {
           <ExternalLink href={`${packageJson.homepage}/releases/tag/v${packageJson.version}`} noIcon>
             <SvgIcon component={GitHubIcon} inheritViewBox fontSize="inherit" sx={{ mr: 0.5 }} /> v{packageJson.version}
           </ExternalLink>
-        </li>
-        <li>
-          <AppstoreButton placement="footer" />
         </li>
         <li>
           <Typography variant="caption">
