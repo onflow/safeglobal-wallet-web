@@ -8,9 +8,8 @@ import {
   SidebarListItemText,
 } from '@/components/sidebar/SidebarList'
 import { loadBeamer } from '@/services/beamer'
-import { useAppDispatch, useAppSelector } from '@/store'
+import { useAppSelector } from '@/store'
 import { selectCookies, CookieAndTermType } from '@/store/cookiesAndTermsSlice'
-import { openCookieBanner } from '@/store/popupSlice'
 import HelpCenterIcon from '@/public/images/sidebar/help-center.svg'
 import { Link, ListItem, SvgIcon, Typography } from '@mui/material'
 import DebugToggle from '../DebugToggle'
@@ -22,10 +21,9 @@ import darkPalette from '@/components/theme/darkPalette'
 import ProtofireLogo from '@/public/images/protofire-logo.svg'
 
 const SidebarFooter = (): ReactElement => {
-  const dispatch = useAppDispatch()
-  const cookies = useAppSelector(selectCookies)
   const chain = useCurrentChain()
 
+  const cookies = useAppSelector(selectCookies)
   const hasBeamerConsent = useCallback(() => cookies[CookieAndTermType.UPDATES], [cookies])
 
   useEffect(() => {
@@ -34,12 +32,6 @@ const SidebarFooter = (): ReactElement => {
       loadBeamer(chain.shortName)
     }
   }, [hasBeamerConsent, chain?.shortName])
-
-  const handleBeamer = () => {
-    if (!hasBeamerConsent()) {
-      dispatch(openCookieBanner({ warningKey: CookieAndTermType.UPDATES }))
-    }
-  }
 
   return (
     <SidebarList>
