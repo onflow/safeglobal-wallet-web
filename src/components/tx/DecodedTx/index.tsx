@@ -13,7 +13,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import DecodedData from '@/components/transactions/TxDetails/TxData/DecodedData'
 import accordionCss from '@/styles/accordion.module.css'
 import HelpToolTip from './HelpTooltip'
-import { useGetTransactionDetailsQuery } from '@/store/gateway'
+import { useGetTransactionDetailsQuery } from '@/store/api/gateway'
 import { skipToken } from '@reduxjs/toolkit/query/react'
 import { asError } from '@/services/exceptions/utils'
 
@@ -41,9 +41,9 @@ const DecodedTx = ({
   showMultisend = true,
   showMethodCall = false,
 }: DecodedTxProps): ReactElement => {
-  const isMultisend = !!decodedData?.parameters?.[0]?.valueDecoded
   const chainId = useChainId()
-  const isMethodCallInAdvanced = !showMethodCall || isMultisend
+  const isMultisend = !!decodedData?.parameters?.[0]?.valueDecoded
+  const isMethodCallInAdvanced = !showMethodCall || (isMultisend && showMultisend)
 
   const {
     data: txDetails,
@@ -61,13 +61,13 @@ const DecodedTx = ({
   const onChangeExpand = (_: SyntheticEvent, expanded: boolean) => {
     trackEvent({ ...MODALS_EVENTS.TX_DETAILS, label: expanded ? 'Open' : 'Close' })
   }
-
   const addressInfoIndex = txDetails?.txData?.addressInfoIndex
 
   const txData = {
     dataDecoded: decodedData,
     to: { value: tx?.data.to || '' },
     value: tx?.data.value,
+    hexData: tx?.data.data,
     operation: tx?.data.operation === OperationType.DelegateCall ? Operation.DELEGATE : Operation.CALL,
     trustedDelegateCallTarget: txDetails?.txData?.trustedDelegateCallTarget ?? true,
     addressInfoIndex,
@@ -114,7 +114,15 @@ const DecodedTx = ({
               </>
             )}
 
-            {txDetails ? <Summary txDetails={txDetails} defaultExpanded /> : tx && <PartialSummary safeTx={tx} />}
+            {txDetails ? (
+              <Summary
+                txDetails={txDetails}
+                defaultExpanded
+                hideDecodedData={isMethodCallInAdvanced && !!decodedData?.method}
+              />
+            ) : (
+              tx && <PartialSummary safeTx={tx} />
+            )}
 
             {txDetailsLoading && <Skeleton />}
 
