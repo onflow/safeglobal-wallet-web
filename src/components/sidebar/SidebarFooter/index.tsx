@@ -21,6 +21,7 @@ import SuggestionIcon from '@/public/images/sidebar/lightbulb_icon.svg'
 
 export const NEW_SUGGESTION_FORM =
   'https://docs.google.com/forms/d/e/1FAIpQLSfojsADYCiWq9AqbLqsUTzCDSpA8FMgdAQp0Pyl0BOeurlq9A/viewform'
+import SafeLogo from '@/public/images/logo-text.svg'
 
 const SidebarFooter = (): ReactElement => {
   const chain = useCurrentChain()
@@ -35,6 +36,13 @@ const SidebarFooter = (): ReactElement => {
 
   return (
     <SidebarList>
+      <ListItem disablePadding>
+        <SvgIcon
+          component={SafeLogo}
+          inheritViewBox
+          sx={{ height: '3.5em', verticalAlign: 'middle', width: '100%', mb: '-12%' }}
+        />
+      </ListItem>
       {!IS_PRODUCTION && (
         <ListItem disablePadding>
           <DebugToggle />
