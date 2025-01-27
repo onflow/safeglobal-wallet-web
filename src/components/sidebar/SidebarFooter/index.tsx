@@ -51,7 +51,7 @@ const SidebarFooter = (): ReactElement => {
               <HelpCenterIcon />
             </SidebarListItemIcon>
             <SidebarListItemText data-testid="list-item-need-help" bold>
-              What's New
+              What &apos; s New
             </SidebarListItemText>
           </SidebarListItemButton>
         </ListItem>
