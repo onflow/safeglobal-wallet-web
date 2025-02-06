@@ -35,6 +35,10 @@ export const OVERVIEW_EVENTS = {
     action: 'Add new network',
     category: OVERVIEW_CATEGORY,
   },
+  SUGGESTIONS: {
+    action: 'Suggestions',
+    category: OVERVIEW_CATEGORY,
+  },
   SUBMIT_ADD_NEW_NETWORK: {
     action: 'Submit add new network',
     category: OVERVIEW_CATEGORY,
