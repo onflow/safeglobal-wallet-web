@@ -19,7 +19,7 @@
 .gradientShadow {
   width: 400px;
   height: 243px;
-  background: linear-gradient(#C0FFFB, #5fddff);
+  background: linear-gradient(#c0fffb, #5fddff);
   filter: blur(40px);
   position: absolute;
   right: 0;
@@ -51,7 +51,7 @@
 }
 
 .gradientText {
-  background: linear-gradient(225deg, #5fddff 12.5%, #5FDDFF 88.07%);
+  background: linear-gradient(225deg, #5fddff 12.5%, #5fddff 88.07%);
   background-clip: text;
   color: transparent;
 }

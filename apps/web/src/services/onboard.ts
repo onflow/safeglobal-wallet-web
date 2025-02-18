@@ -4,7 +4,6 @@ import { getAllWallets } from '@/hooks/wallets/wallets'
 import { getRpcServiceUrl } from '@/hooks/wallets/web3'
 import type { EnvState } from '@/store/settingsSlice'
 import { numberToHex } from '@/utils/hex'
-import { BRAND_NAME } from '@/config/constants'
 
 let onboard: OnboardAPI | null = null
 
