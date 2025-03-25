@@ -95,7 +95,7 @@ export const RECOVERY_FEEDBACK_FORM =
   'https://noteforms.com/forms/safe-feedback-form-hk16ds?notionforms=1&utm_source=notionforms'
 
 // Social
-export const DISCORD_URL = 'https://discord.com/invite/flowblockchain'
+export const DISCORD_URL = ' https://discord.com/invite/J6fFnh2xx6'
 export const TWITTER_URL = 'https://x.com/flow_blockchain'
 
 // Legal

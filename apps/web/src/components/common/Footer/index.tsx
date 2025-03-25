@@ -58,9 +58,6 @@ const Footer = (): ReactElement | null => {
               <FooterLink href={getHref(AppRoutes.licenses)}>Licenses</FooterLink>
             </li>
             <li>
-              <FooterLink href={getHref(AppRoutes.imprint)}>Imprint</FooterLink>
-            </li>
-            <li>
               <FooterLink href={getHref(AppRoutes.cookie)}>Cookie policy</FooterLink>
             </li> */}
             <li>
@@ -72,6 +69,9 @@ const Footer = (): ReactElement | null => {
               <ExternalLink href={TWITTER_URL} noIcon sx={{ span: { textDecoration: 'underline' } }}>
                 X
               </ExternalLink>
+            </li>
+            <li>
+              <FooterLink href={getHref(AppRoutes.imprint)}>Imprint</FooterLink>
             </li>
             <li>
               <FooterLink href={getHref(AppRoutes.settings.index)}>Preferences</FooterLink>
