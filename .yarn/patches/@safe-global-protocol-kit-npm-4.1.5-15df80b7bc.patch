@@ -1,0 +1,13 @@
+diff --git a/dist/src/utils/eip-3770/config.js b/dist/src/utils/eip-3770/config.js
+index 4937a8edcfb3981d3974d2a0fa9bafdb92cde131..1fa0ae9235393b70c26b83867df3e3e04b9f968f 100644
+--- a/dist/src/utils/eip-3770/config.js
++++ b/dist/src/utils/eip-3770/config.js
+@@ -27,6 +27,8 @@ exports.networks = [
+     { chainId: 46n, shortName: 'darwinia' },
+     { chainId: 50n, shortName: 'xdc' },
+     { chainId: 51n, shortName: 'txdc' },
++    { chainId: 747n, shortName: 'flow-mainnet' },
++    { chainId: 545n, shortName: 'flow-testnet'},
+     { chainId: 56n, shortName: 'bnb' },
+     { chainId: 57n, shortName: 'sys' },
+     { chainId: 61n, shortName: 'etc' },
