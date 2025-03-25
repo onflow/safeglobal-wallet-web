@@ -8,7 +8,7 @@ export const AppRoutes = {
   // privacy: '/privacy',
   // licenses: '/licenses',
   index: '/',
-  // imprint: '/imprint',
+  imprint: '/imprint',
   home: '/home',
   cookie: '/cookie',
   bridge: '/bridge',

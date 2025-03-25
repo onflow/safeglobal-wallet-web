@@ -6379,6 +6379,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@peculiar/asn1-schema@npm:^2.3.13":
+  version: 2.3.15
+  resolution: "@peculiar/asn1-schema@npm:2.3.15"
+  dependencies:
+    asn1js: "npm:^3.0.5"
+    pvtsutils: "npm:^1.3.6"
+    tslib: "npm:^2.8.1"
+  checksum: 10/c54cd2ae7b71adcee6364c19b094ae5069b41c9907c68a1f35024f2ba4908285291021ad077001f249889e25839bfaaad7e9983e28e22d0c0a319170896f6627
+  languageName: node
+  linkType: hard
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -7424,19 +7435,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@safe-global/protocol-kit@patch:@safe-global/protocol-kit@npm%3A4.1.3#~/.yarn/patches/@safe-global-protocol-kit-npm-4.1.3-4f78613340.patch":
-  version: 4.1.3
-  resolution: "@safe-global/protocol-kit@patch:@safe-global/protocol-kit@npm%3A4.1.3#~/.yarn/patches/@safe-global-protocol-kit-npm-4.1.3-4f78613340.patch::version=4.1.3&hash=5ac960"
+"@safe-global/protocol-kit@npm:^5.1.1":
+  version: 5.2.4
+  resolution: "@safe-global/protocol-kit@npm:5.2.4"
   dependencies:
-    "@noble/hashes": "npm:^1.3.3"
-    "@safe-global/safe-core-sdk-types": "npm:^5.1.0"
-    "@safe-global/safe-deployments": "npm:^1.37.22"
-    "@safe-global/safe-modules-deployments": "npm:^2.2.1"
+    "@noble/curves": "npm:^1.6.0"
+    "@peculiar/asn1-schema": "npm:^2.3.13"
+    "@safe-global/safe-deployments": "npm:^1.37.28"
+    "@safe-global/safe-modules-deployments": "npm:^2.2.5"
+    "@safe-global/types-kit": "npm:^1.0.4"
     abitype: "npm:^1.0.2"
-    ethereumjs-util: "npm:^7.1.5"
-    ethers: "npm:^6.13.1"
-    semver: "npm:^7.6.2"
-  checksum: 10/be77fc450b54831cdaa995158dfc60e8e183deacc0081e8005d8352beb14d06ae6a15e4ac191599000ed65939cd1347a5faaee347f81da0bb72559f474d5d88c
+    semver: "npm:^7.6.3"
+    viem: "npm:^2.21.8"
+  dependenciesMeta:
+    "@noble/curves":
+      optional: true
+    "@peculiar/asn1-schema":
+      optional: true
+  checksum: 10/75f69bbafd5b3a5cf7fa197c3a7a04e6e4fbb3ae8014446cca00a50de9c9cc4af5e41218150525585f6cc4c7e37f994778bc085a1f0d00143ccb266d841de808
   languageName: node
   linkType: hard
 
@@ -7468,7 +7484,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@safe-global/safe-deployments@npm:^1.37.22, @safe-global/safe-deployments@npm:^1.37.28":
+"@safe-global/safe-deployments@npm:^1.37.28":
   version: 1.37.28
   resolution: "@safe-global/safe-deployments@npm:1.37.28"
   dependencies:
@@ -7484,10 +7500,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@safe-global/safe-modules-deployments@npm:^2.2.1, @safe-global/safe-modules-deployments@npm:^2.2.4, @safe-global/safe-modules-deployments@npm:^2.2.6":
+"@safe-global/safe-modules-deployments@npm:^2.2.1, @safe-global/safe-modules-deployments@npm:^2.2.6":
   version: 2.2.6
   resolution: "@safe-global/safe-modules-deployments@npm:2.2.6"
   checksum: 10/2788918cf955784e19723d7be4097b0485a85eaf326596ba0fdbcc3aff82a34848f5e537b0493fdeadb30292e2878703c55b8271b8e1fe487957b8d0645eeb75
+  languageName: node
+  linkType: hard
+
+"@safe-global/safe-modules-deployments@npm:^2.2.5":
+  version: 2.2.7
+  resolution: "@safe-global/safe-modules-deployments@npm:2.2.7"
+  checksum: 10/3dfce979b2879d72828365a36cebd59ff76b4781e26033724ba858293f38c9a4cf90ce423767e1f5fa23cccd6d5a151e10a7db9d8ea4340c610ee7c615c22797
   languageName: node
   linkType: hard
 
@@ -7538,6 +7561,15 @@ __metadata:
   dependencies:
     abitype: "npm:^1.0.2"
   checksum: 10/2b740301a7aa8280f34ba1e7c74f7e9993e60a38b7a303ee65496f0116beff691690c957adc2d49667cc112f44c63141da2ae010c0ef39cb33ad0693a1d39512
+  languageName: node
+  linkType: hard
+
+"@safe-global/types-kit@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@safe-global/types-kit@npm:1.0.4"
+  dependencies:
+    abitype: "npm:^1.0.2"
+  checksum: 10/920a94d7095940a173c2f3b23086b6bf8ead04c520f245187c5bfadded5ee0c94db1295003eda46613e5fa812eba20d594995c2a2ab566edfde6d74d9e41d160
   languageName: node
   linkType: hard
 
@@ -13149,6 +13181,17 @@ __metadata:
   dependencies:
     safer-buffer: "npm:~2.1.0"
   checksum: 10/cf629291fee6c1a6f530549939433ebf32200d7849f38b810ff26ee74235e845c0c12b2ed0f1607ac17383d19b219b69cefa009b920dab57924c5c544e495078
+  languageName: node
+  linkType: hard
+
+"asn1js@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "asn1js@npm:3.0.5"
+  dependencies:
+    pvtsutils: "npm:^1.3.2"
+    pvutils: "npm:^1.1.3"
+    tslib: "npm:^2.4.0"
+  checksum: 10/17fb0302432186631550de9606a4622ec366646d072cde9cdf4bcafa47bd2425e157eeb7b1377ee6520f8b46687b4ecaee31cf0ad2fa494361a1938b2ed53194
   languageName: node
   linkType: hard
 
@@ -25856,7 +25899,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pvtsutils@npm:^1.3.2, pvtsutils@npm:^1.3.5":
+"pvtsutils@npm:^1.3.2, pvtsutils@npm:^1.3.6":
   version: 1.3.6
   resolution: "pvtsutils@npm:1.3.6"
   dependencies:
@@ -26089,7 +26132,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^16.8.0 || ^17.0.0 || ^18.0.0, react-dom@npm:^18.3.1":
+"react-dom@npm:18.3.1, react-dom@npm:^16.8.0 || ^17.0.0 || ^18.0.0, react-dom@npm:^18.3.1":
   version: 18.3.1
   resolution: "react-dom@npm:18.3.1"
   dependencies:
@@ -26098,6 +26141,17 @@ __metadata:
   peerDependencies:
     react: ^18.3.1
   checksum: 10/3f4b73a3aa083091173b29812b10394dd06f4ac06aff410b74702cfb3aa29d7b0ced208aab92d5272919b612e5cda21aeb1d54191848cf6e46e9e354f3541f81
+  languageName: node
+  linkType: hard
+
+"react-dom@npm:^19.0.0":
+  version: 19.0.0
+  resolution: "react-dom@npm:19.0.0"
+  dependencies:
+    scheduler: "npm:^0.25.0"
+  peerDependencies:
+    react: ^19.0.0
+  checksum: 10/aa64a2f1991042f516260e8b0eca0ae777b6c8f1aa2b5ae096e80bbb6ac9b005aef2bca697969841d34f7e1819556263476bdfea36c35092e8d9aefde3de2d9a
   languageName: node
   linkType: hard
 
@@ -26684,6 +26738,13 @@ __metadata:
   dependencies:
     loose-envify: "npm:^1.1.0"
   checksum: 10/261137d3f3993eaa2368a83110466fc0e558bc2c7f7ae7ca52d94f03aac945f45146bd85e5f481044db1758a1dbb57879e2fcdd33924e2dde1bdc550ce73f7bf
+  languageName: node
+  linkType: hard
+
+"react@npm:^19.0.0":
+  version: 19.0.0
+  resolution: "react@npm:19.0.0"
+  checksum: 10/2490969c503f644703c88990d20e4011fa6119ddeca451e9de48f6d7ab058d670d2852a5fcd3aa3cd90a923ab2815d532637bd4a814add402ae5c0d4f129ee71
   languageName: node
   linkType: hard
 
@@ -27669,6 +27730,13 @@ __metadata:
   dependencies:
     loose-envify: "npm:^1.1.0"
   checksum: 10/e8d68b89d18d5b028223edf090092846868a765a591944760942b77ea1f69b17235f7e956696efbb62c8130ab90af7e0949bfb8eba7896335507317236966bc9
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:^0.25.0":
+  version: 0.25.0
+  resolution: "scheduler@npm:0.25.0"
+  checksum: 10/e661e38503ab29a153429a99203fefa764f28b35c079719eb5efdd2c1c1086522f6653d8ffce388209682c23891a6d1d32fa6badf53c35fb5b9cd0c55ace42de
   languageName: node
   linkType: hard
 
@@ -30047,7 +30115,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0, tslib@npm:^2.6.2, tslib@npm:^2.7.0, tslib@npm:^2.8.0":
+"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0, tslib@npm:^2.6.2, tslib@npm:^2.7.0, tslib@npm:^2.8.0, tslib@npm:^2.8.1":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: 10/3e2e043d5c2316461cb54e5c7fe02c30ef6dccb3384717ca22ae5c6b5bc95232a6241df19c622d9c73b809bea33b187f6dbc73030963e29950c2141bc32a79f7

@@ -12,7 +12,13 @@ import { DISCORD_URL, HELP_CENTER_URL, IS_DEV, IS_OFFICIAL_HOST, TWITTER_URL } f
 import darkPalette from '@/components/theme/darkPalette'
 import ProtofireLogo from '@/public/images/protofire-logo.svg'
 
-const footerPages = [AppRoutes.welcome.index, AppRoutes.settings.index, AppRoutes.cookie, AppRoutes.terms]
+const footerPages = [
+  AppRoutes.welcome.index,
+  AppRoutes.settings.index,
+  AppRoutes.cookie,
+  AppRoutes.terms,
+  AppRoutes.imprint,
+]
 
 const FooterLink = ({ children, href }: { children: ReactNode; href: string }): ReactElement => {
   return href ? (
@@ -69,6 +75,9 @@ const Footer = (): ReactElement | null => {
               <ExternalLink href={TWITTER_URL} noIcon sx={{ span: { textDecoration: 'underline' } }}>
                 X
               </ExternalLink>
+            </li>
+            <li>
+              <FooterLink href={getHref(AppRoutes.imprint)}>Imprint</FooterLink>
             </li>
             <li>
               <FooterLink href={getHref(AppRoutes.settings.index)}>Preferences</FooterLink>

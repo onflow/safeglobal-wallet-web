@@ -120,3 +120,4 @@ export const TERMS_LINK =
   process.env.NEXT_PUBLIC_TERMS_LINK ||
   'https://raw.githubusercontent.com/protofire/safe-legal/refs/heads/main/terms.md'
 export const COOKIE_LINK = 'https://raw.githubusercontent.com/protofire/safe-legal/refs/heads/main/cookie.md'
+export const IMPRINT_LINK = 'https://raw.githubusercontent.com/protofire/safe-legal/refs/heads/main/imprint.md'
