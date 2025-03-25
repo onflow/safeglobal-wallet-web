@@ -71,9 +71,6 @@ const Footer = (): ReactElement | null => {
               </ExternalLink>
             </li>
             <li>
-              <FooterLink href={getHref(AppRoutes.imprint)}>Imprint</FooterLink>
-            </li>
-            <li>
               <FooterLink href={getHref(AppRoutes.settings.index)}>Preferences</FooterLink>
             </li>
             <li>
