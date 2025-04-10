@@ -1,11 +1,15 @@
-name: Unit tests
+name: Web Unit tests
 on:
   pull_request:
+    paths:
+      - apps/web/**
 
   push:
     branches:
       - main
-
+    paths:
+      - apps/web/**
+      - packages/store/**
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -21,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/workflows/yarn
+      - uses: ./.github/actions/yarn
 
       - name: Annotations and coverage report
         uses: ArtiomTr/jest-coverage-report-action@v2.3.1
@@ -30,4 +34,7 @@ jobs:
           annotations: failed-tests
           package-manager: yarn
           test-script: yarn test:ci
+          working-directory: apps/web
           github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          NEXT_PUBLIC_IS_OFFICIAL_HOST: true

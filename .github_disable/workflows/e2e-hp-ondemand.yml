@@ -1,9 +1,9 @@
-name: Happy path on demand tests
+name: Web Happy path on demand tests
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 4 * * 1,4'
+    - cron: '0 4 * * 3'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/workflows/cypress
+      - uses: ./.github/actions/cypress
         with:
           secrets: ${{ toJSON(secrets) }}
           spec: |
@@ -43,7 +43,7 @@ jobs:
       - name: Merge JUnit reports for TestRail
         if: always()
         run: |
-          junitparser merge --suite-name "Root Suite" --glob "reports/junit-*" "reports/junit-report.xml"
+          junitparser merge --suite-name "Root Suite" --glob "apps/web/reports/junit-*" "apps/web/reports/junit-report.xml"
 
       - name: TestRail CLI upload results
         if: always()
@@ -55,6 +55,6 @@ jobs:
           --username ${{ secrets.TESTRAIL_USERNAME }} \
           --password ${{ secrets.TESTRAIL_PASSWORD }} \
           parse_junit \
-          --title "Happy path Tests, branch: ${GITHUB_REF_NAME}" \
+          --title "Happy Path Automated Tests, branch: ${GITHUB_REF_NAME}" \
           --run-description ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} \
-          -f "reports/junit-report.xml"
+          -f "apps/web/reports/junit-report.xml"

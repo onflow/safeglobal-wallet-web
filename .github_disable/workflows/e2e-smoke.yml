@@ -1,8 +1,10 @@
-name: Smoke tests
+name: Web Smoke tests
 
 on:
   pull_request:
-
+    paths:
+      - apps/web/**
+      - packages/store/**
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -21,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/workflows/cypress
+      - uses: ./.github/actions/cypress
         with:
           secrets: ${{ toJSON(secrets) }}
           spec: cypress/e2e/smoke/*.cy.js
