@@ -12,13 +12,14 @@ import { useAppSelector } from '@/store'
 import { CookieAndTermType, hasConsentFor } from '@/store/cookiesAndTermsSlice'
 import { ListItem, SvgIcon, Typography } from '@mui/material'
 import DebugToggle from '../DebugToggle'
-import { IS_PRODUCTION } from '@/config/constants'
+import { HELP_CENTER_URL, IS_PRODUCTION } from '@/config/constants'
 import { useCurrentChain } from '@/hooks/useChains'
 import ProtofireLogo from '@/public/images/protofire-logo.svg'
 import SuggestionIcon from '@/public/images/sidebar/lightbulb_icon.svg'
 import SafeLogo from '@/public/images/logo-text.svg'
 import ExternalLink from '@/components/common/ExternalLink'
 import Track from '@/components/common/Track'
+import HelpCenterIcon from '@/public/images/sidebar/help-center.svg'
 import { OVERVIEW_EVENTS } from '@/services/analytics'
 
 export const NEW_SUGGESTION_FORM =
@@ -57,7 +58,20 @@ const SidebarFooter = (): ReactElement => {
       </Track> */}
 
       {/* Help Center link removed. To restore, import HELP_CENTER_URL from '@/config/constants' */}
-
+      <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
+        <ListItem disablePadding>
+          <a target="_blank" rel="noopener noreferrer" href={HELP_CENTER_URL} style={{ width: '100%' }}>
+            <SidebarListItemButton>
+              <SidebarListItemIcon color="primary">
+                <HelpCenterIcon />
+              </SidebarListItemIcon>
+              <SidebarListItemText data-testid="list-item-need-help" bold>
+                Need help?
+              </SidebarListItemText>
+            </SidebarListItemButton>
+          </a>
+        </ListItem>
+      </Track>
       <Track {...OVERVIEW_EVENTS.SUGGESTIONS}>
         <ListItem disablePadding>
           <a target="_blank" rel="noopener noreferrer" href={NEW_SUGGESTION_FORM} style={{ width: '100%' }}>
