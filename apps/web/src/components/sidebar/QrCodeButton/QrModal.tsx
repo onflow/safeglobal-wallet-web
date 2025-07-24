@@ -49,7 +49,7 @@ const QrModal = ({ onClose }: { onClose: () => void }): ReactElement => {
           <Box mt={2}>
             <EthHashInfo
               address={safeAddress}
-              shortAddress={qrPrefix.length > 10}
+              shortAddress={qrPrefix.length > 5}
               showPrefix={qrPrefix.length > 0}
               hasExplorer
               showCopyButton
