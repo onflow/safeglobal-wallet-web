@@ -49,6 +49,7 @@ export const mixpanelInit = (): void => {
       batch_requests: true,
       ip: false,
       opt_out_tracking_by_default: true,
+      opt_out_tracking_persistence_type: 'localStorage',
     })
 
     isMixPanelInitialized = true

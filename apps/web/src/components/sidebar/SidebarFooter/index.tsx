@@ -10,7 +10,7 @@ import {
 import { loadBeamer } from '@/services/beamer'
 import { useAppSelector } from '@/store'
 import { CookieAndTermType, hasConsentFor } from '@/store/cookiesAndTermsSlice'
-import { ListItem, SvgIcon, Typography } from '@mui/material'
+import { ListItem, SvgIcon, Typography, Divider } from '@mui/material'
 import DebugToggle from '../DebugToggle'
 import { HELP_CENTER_URL, IS_PRODUCTION } from '@/config/constants'
 import { useCurrentChain } from '@/hooks/useChains'
@@ -37,7 +37,7 @@ const SidebarFooter = (): ReactElement => {
   }, [hasBeamerConsent, chain?.shortName])
 
   return (
-    <>
+    <SidebarList>
       {!IS_PRODUCTION && (
         <>
           <ListItem disablePadding>
