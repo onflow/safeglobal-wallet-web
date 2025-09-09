@@ -1,18 +1,11 @@
 import { useEffect, type ReactElement } from 'react'
 import classnames from 'classnames'
 import type { CheckboxProps } from '@mui/material'
-import { Grid, Button, Checkbox, FormControlLabel, Typography, Paper, SvgIcon, Box } from '@mui/material'
+import { Grid, Checkbox, FormControlLabel, Typography, Paper, SvgIcon, Box } from '@mui/material'
 import WarningIcon from '@/public/images/notifications/warning.svg'
-import { useForm } from 'react-hook-form'
-import * as metadata from '@/markdown/terms/version'
 
 import { useAppDispatch, useAppSelector } from '@/store'
-import {
-  selectCookies,
-  CookieAndTermType,
-  saveCookieAndTermConsent,
-  hasAcceptedTerms,
-} from '@/store/cookiesAndTermsSlice'
+import { CookieAndTermType, hasAcceptedTerms } from '@/store/cookiesAndTermsSlice'
 import { selectCookieBanner, openCookieBanner, closeCookieBanner } from '@/store/popupSlice'
 
 import css from './styles.module.css'
@@ -44,35 +37,6 @@ export const CookieAndTermBanner = ({
   inverted?: boolean
 }): ReactElement => {
   const warning = warningKey ? COOKIE_AND_TERM_WARNING[warningKey] : undefined
-  const dispatch = useAppDispatch()
-  const cookies = useAppSelector(selectCookies)
-
-  const { getValues, setValue } = useForm({
-    defaultValues: {
-      [CookieAndTermType.TERMS]: true,
-      [CookieAndTermType.NECESSARY]: true,
-      [CookieAndTermType.UPDATES]: cookies[CookieAndTermType.UPDATES] ?? false,
-      [CookieAndTermType.ANALYTICS]: cookies[CookieAndTermType.ANALYTICS] ?? false,
-      ...(warningKey ? { [warningKey]: true } : {}),
-    },
-  })
-
-  const handleAccept = () => {
-    const values = getValues()
-    dispatch(
-      saveCookieAndTermConsent({
-        ...values,
-        termsVersion: metadata.version,
-      }),
-    )
-    dispatch(closeCookieBanner())
-  }
-
-  const handleAcceptAll = () => {
-    setValue(CookieAndTermType.UPDATES, true)
-    setValue(CookieAndTermType.ANALYTICS, true)
-    setTimeout(handleAccept, 300)
-  }
 
   return (
     <Paper data-testid="cookies-popup" className={classnames(css.container, { [css.inverted]: inverted })}>
@@ -150,11 +114,11 @@ export const CookieAndTermBanner = ({
                 </Typography>
               </Grid> */}
 
-              <Grid item>
+              {/* <Grid item>
                 <Button onClick={handleAcceptAll} variant="contained" color="secondary" size="small" disableElevation>
                   Accept all
                 </Button>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Grid>
         </Grid>

@@ -22,8 +22,7 @@ import Track from '@/components/common/Track'
 import HelpCenterIcon from '@/public/images/sidebar/help-center.svg'
 import { OVERVIEW_EVENTS } from '@/services/analytics'
 
-export const NEW_SUGGESTION_FORM =
-  'https://docs.google.com/forms/d/e/1FAIpQLSfojsADYCiWq9AqbLqsUTzCDSpA8FMgdAQp0Pyl0BOeurlq9A/viewform'
+export const NEW_SUGGESTION_FORM = 'https://safe-feature-request.protofire.io'
 
 const SidebarFooter = (): ReactElement => {
   const chain = useCurrentChain()
@@ -64,7 +63,12 @@ const SidebarFooter = (): ReactElement => {
       {/* Help Center link removed. To restore, import HELP_CENTER_URL from '@/config/constants' */}
       <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
         <ListItem disablePadding>
-          <a target="_blank" rel="noopener noreferrer" href={HELP_CENTER_URL} style={{ width: '100%' }}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={HELP_CENTER_URL}
+            style={{ width: '100%', marginBottom: '3px' }}
+          >
             <SidebarListItemButton>
               <SidebarListItemIcon color="primary">
                 <HelpCenterIcon />
@@ -89,12 +93,8 @@ const SidebarFooter = (): ReactElement => {
         </ListItem>
       </Track>
 
-      <ListItem disablePadding>
-        <SvgIcon
-          component={SafeLogo}
-          inheritViewBox
-          sx={{ height: '3.5em', verticalAlign: 'middle', width: '100%', mb: '-12%' }}
-        />
+      <ListItem>
+        <SvgIcon component={SafeLogo} inheritViewBox sx={{ height: '2em', mb: '-5px', width: '100%' }} />
       </ListItem>
 
       <ListItem>
