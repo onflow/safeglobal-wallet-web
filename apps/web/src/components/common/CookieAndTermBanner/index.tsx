@@ -1,15 +1,22 @@
 import { useEffect, type ReactElement } from 'react'
 import classnames from 'classnames'
 import type { CheckboxProps } from '@mui/material'
-import { Grid, Checkbox, FormControlLabel, Typography, Paper, SvgIcon, Box } from '@mui/material'
+import { Grid, Button, Checkbox, FormControlLabel, Typography, Paper, SvgIcon, Box } from '@mui/material'
 import WarningIcon from '@/public/images/notifications/warning.svg'
+import { useForm } from 'react-hook-form'
+import * as metadata from '@/markdown/terms/version'
 
 import { useAppDispatch, useAppSelector } from '@/store'
-import { CookieAndTermType, hasAcceptedTerms } from '@/store/cookiesAndTermsSlice'
+import {
+  selectCookies,
+  CookieAndTermType,
+  saveCookieAndTermConsent,
+  hasAcceptedTerms,
+} from '@/store/cookiesAndTermsSlice'
 import { selectCookieBanner, openCookieBanner, closeCookieBanner } from '@/store/popupSlice'
 
-import css from './styles.module.css'
 import Link from 'next/link'
+import css from './styles.module.css'
 import { AppRoutes } from '@/config/routes'
 
 const COOKIE_AND_TERM_WARNING: Record<CookieAndTermType, string> = {
@@ -37,6 +44,35 @@ export const CookieAndTermBanner = ({
   inverted?: boolean
 }): ReactElement => {
   const warning = warningKey ? COOKIE_AND_TERM_WARNING[warningKey] : undefined
+  const dispatch = useAppDispatch()
+  const cookies = useAppSelector(selectCookies)
+
+  const { getValues, setValue } = useForm({
+    defaultValues: {
+      [CookieAndTermType.TERMS]: true,
+      [CookieAndTermType.NECESSARY]: true,
+      [CookieAndTermType.UPDATES]: cookies[CookieAndTermType.UPDATES] ?? false,
+      [CookieAndTermType.ANALYTICS]: cookies[CookieAndTermType.ANALYTICS] ?? false,
+      ...(warningKey ? { [warningKey]: true } : {}),
+    },
+  })
+
+  const handleAccept = () => {
+    const values = getValues()
+    dispatch(
+      saveCookieAndTermConsent({
+        ...values,
+        termsVersion: metadata.version,
+      }),
+    )
+    dispatch(closeCookieBanner())
+  }
+
+  const handleAcceptAll = () => {
+    setValue(CookieAndTermType.UPDATES, false)
+    setValue(CookieAndTermType.ANALYTICS, false)
+    setTimeout(handleAccept, 300)
+  }
 
   return (
     <Paper data-testid="cookies-popup" className={classnames(css.container, { [css.inverted]: inverted })}>
@@ -67,14 +103,13 @@ export const CookieAndTermBanner = ({
               }}
             >
               By browsing this page, you accept our{' '}
-              <Link href={AppRoutes.terms} style={{ textDecoration: 'underline' }}>
-                Terms & Conditions
+              <Link href={AppRoutes.terms}>
+                <u>Terms & Conditions </u>
               </Link>{' '}
-              and the use of necessary cookies.{' '}
-              <Link href={AppRoutes.cookie} style={{ textDecoration: 'underline' }}>
-                Cookie policy
+              and the use of necessary cookies.
+              <Link href={AppRoutes.cookie}>
+                <u>Cookies Policy</u>{' '}
               </Link>
-              .
             </Typography>
 
             <Grid
@@ -94,6 +129,32 @@ export const CookieAndTermBanner = ({
                   <br />
                   <Typography variant="body2">Locally stored data for core functionality</Typography>
                 </Box>
+
+                {/* <Box
+                  sx={{
+                    mb: 2,
+                  }}
+                >
+                  <CookieCheckbox
+                    checkboxProps={{ ...register(CookieAndTermType.UPDATES), id: 'beamer' }}
+                    label="Beamer"
+                    checked={watch(CookieAndTermType.UPDATES)}
+                  />
+                  <br />
+                  <Typography variant="body2">New features and product announcements</Typography>
+                </Box>
+
+                <Box>
+                  <CookieCheckbox
+                    checkboxProps={{ ...register(CookieAndTermType.ANALYTICS), id: 'ga' }}
+                    label="Analytics"
+                    checked={watch(CookieAndTermType.ANALYTICS)}
+                  />
+                  <br />
+                  <Typography variant="body2">
+                    Opt in for Google Analytics cookies to help us analyze app usage patterns.
+                  </Typography>
+                </Box> */}
               </Grid>
             </Grid>
 
@@ -114,11 +175,11 @@ export const CookieAndTermBanner = ({
                 </Typography>
               </Grid> */}
 
-              {/* <Grid item>
+              <Grid item>
                 <Button onClick={handleAcceptAll} variant="contained" color="secondary" size="small" disableElevation>
-                  Accept all
+                  Save settings
                 </Button>
-              </Grid> */}
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
