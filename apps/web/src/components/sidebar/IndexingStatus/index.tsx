@@ -63,7 +63,7 @@ const IndexingStatus = () => {
   const time = formatDistanceToNow(data.lastSync, { addSuffix: true })
 
   return (
-    <Tooltip title={`Last synced with the blockchain ${time}`} placement="right" arrow>
+    <Tooltip style={{ display: 'flex' }} title={`Last synced with the blockchain ${time}`} placement="right" arrow>
       <Button
         size="small"
         href={STATUS_PAGE}

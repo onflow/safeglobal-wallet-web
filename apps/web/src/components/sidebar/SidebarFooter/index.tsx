@@ -21,6 +21,7 @@ import ExternalLink from '@/components/common/ExternalLink'
 import Track from '@/components/common/Track'
 import HelpCenterIcon from '@/public/images/sidebar/help-center.svg'
 import { OVERVIEW_EVENTS } from '@/services/analytics'
+import IndexingStatus from '@/components/sidebar/IndexingStatus'
 
 export const NEW_SUGGESTION_FORM = 'https://safe-feature-request.protofire.io'
 
@@ -113,6 +114,10 @@ const SidebarFooter = (): ReactElement => {
           </Typography>
         </SidebarListItemText>
       </ListItem>
+
+      <Divider flexItem />
+
+      {!IS_PRODUCTION && <IndexingStatus />}
     </SidebarList>
   )
 }
