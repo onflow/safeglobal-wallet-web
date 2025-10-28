@@ -9,7 +9,7 @@ import { IS_PRODUCTION } from '@/config/constants'
 
 const STATUS_PAGE = IS_PRODUCTION
   ? 'https://tx-status-app.safe.protofire.io/?serviceUrl=https://gateway.safe.flow.com'
-  : 'https://tx-status-app.safe.protofire.io/?serviceUrl=https://gateway.staging.safe.flow.com';
+  : 'https://tx-status-app.safe.protofire.io/?serviceUrl=https://gateway.staging.safe.flow.com'
 
 const MAX_SYNC_DELAY = 1000 * 60 * 5 // 5 minutes
 const POLL_INTERVAL = 1000 * 60 // 1 minute
