@@ -15,7 +15,7 @@ const TEMPLATE_CONFIG = {
   IS_LICENSED: true,
   LOGO_DIMENSIONS: {
     HEADER: {
-      H: '24px',
+      H: '40px',
     },
     WELCOME: {
       W: '120px',
