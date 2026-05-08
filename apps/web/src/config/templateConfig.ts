@@ -19,7 +19,7 @@ const TEMPLATE_CONFIG = {
     },
     WELCOME: {
       W: '120px',
-      H: '64px',
+      H: '40px',
     },
   },
 } as TemplateConfig
