@@ -12,6 +12,8 @@ import SwapIcon from '@/public/images/common/swap.svg'
 import StakeIcon from '@/public/images/common/stake.svg'
 import EarnIcon from '@/public/images/common/earn.svg'
 import { SvgIcon } from '@mui/material'
+import ProtofireLogo from '@/public/images/sidebar/protofire.svg'
+import { getSharedUiWelcomeUrl } from '@/config/dataMigration'
 
 export type NavItem = {
   label: string
@@ -20,6 +22,7 @@ export type NavItem = {
   tag?: ReactElement
   disabled?: boolean
   externalUrl?: string
+  hint?: boolean
 }
 
 export const navItems: NavItem[] = [
@@ -47,6 +50,14 @@ export const navItems: NavItem[] = [
     href: AppRoutes.settings.setup,
   },
 ]
+
+export const getProtofireMultisigNavItem = (sharedUiOrigin: string): NavItem => ({
+  label: 'Protofire Multisig',
+  icon: <SvgIcon component={ProtofireLogo} inheritViewBox />,
+  href: '',
+  externalUrl: getSharedUiWelcomeUrl(sharedUiOrigin),
+  hint: true,
+})
 
 export const transactionNavItems = [
   { label: 'Queue', href: AppRoutes.transactions.queue },

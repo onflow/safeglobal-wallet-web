@@ -1,5 +1,6 @@
-import { type ReactElement, type ReactNode, type SyntheticEvent, useState } from 'react'
-import { Link, Typography, SvgIcon, AlertTitle } from '@mui/material'
+import { type ElementType, type ReactElement, type ReactNode, type SyntheticEvent, useState } from 'react'
+import { Link, Typography, SvgIcon, AlertTitle, IconButton } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close'
 import classNames from 'classnames'
 import WarningIcon from '@/public/images/notifications/warning.svg'
 import InfoIcon from '@/public/images/notifications/info.svg'
@@ -19,6 +20,8 @@ const ErrorMessage = ({
   level = 'error',
   title,
   context,
+  icon,
+  onClose,
 }: {
   children: ReactNode
   error?: Error
@@ -26,6 +29,8 @@ const ErrorMessage = ({
   level?: 'error' | 'warning' | 'info'
   title?: string
   context?: 'estimation' | 'execution'
+  icon?: ElementType
+  onClose?: () => void
 }): ReactElement => {
   const [showDetails, setShowDetails] = useState<boolean>(false)
   const { safe } = useSafeInfo()
@@ -45,7 +50,7 @@ const ErrorMessage = ({
     <div data-testid="error-message" className={classNames(css.container, css[level], className, 'errorMessage')}>
       <div className={css.message}>
         <SvgIcon
-          component={level === 'info' ? InfoIcon : WarningIcon}
+          component={icon ?? (level === 'info' ? InfoIcon : WarningIcon)}
           inheritViewBox
           fontSize="medium"
           sx={{ color: ({ palette }) => `${palette[level].main} !important` }}
@@ -102,6 +107,12 @@ const ErrorMessage = ({
             </Typography>
           )}
         </div>
+
+        {onClose && (
+          <IconButton aria-label="Close" size="small" onClick={onClose} sx={{ ml: 'auto', alignSelf: 'flex-start' }}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        )}
       </div>
     </div>
   )

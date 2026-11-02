@@ -61,6 +61,8 @@ export enum FEATURES {
   EURCV_BOOST = 'EURCV_BOOST',
   MY_ACCOUNTS = 'MY_ACCOUNTS',
   SUNSET_BANNER = 'SUNSET_BANNER',
+  DATA_MIGRATION_PROMO = 'DATA_MIGRATION_PROMO', // opt-in localStorage migration banner from dedicated deployments to the shared UI
+  DATA_MIGRATION_PROMO_NON_DISMISSIBLE = 'DATA_MIGRATION_PROMO_NON_DISMISSIBLE', // makes the migration banner impossible to close (only applies when DATA_MIGRATION_PROMO is also enabled)
 }
 
 const MIN_SAFE_VERSION = '1.3.0'

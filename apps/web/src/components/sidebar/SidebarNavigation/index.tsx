@@ -10,11 +10,13 @@ import {
   SidebarListItemIcon,
   SidebarListItemText,
 } from '@/components/sidebar/SidebarList'
-import { type NavItem, navItems } from './config'
+import { type NavItem, navItems, getProtofireMultisigNavItem } from './config'
 import useSafeInfo from '@/hooks/useSafeInfo'
 import { AppRoutes, UNDEPLOYED_SAFE_BLOCKED_ROUTES } from '@/config/routes'
 import { useQueuedTxsLength } from '@/hooks/useTxQueue'
-import { useCurrentChain } from '@/hooks/useChains'
+import useMigrationLinkHint from '@/hooks/useMigrationLinkHint'
+import { migrationLinkHintSx } from './hintAnimation'
+import { useCurrentChain, useHasFeature } from '@/hooks/useChains'
 import { isRouteEnabled } from '@/utils/chains'
 import { trackEvent, OVERVIEW_EVENTS } from '@/services/analytics'
 import { SWAP_EVENTS, SWAP_LABELS } from '@/services/analytics/events/swaps'
@@ -25,7 +27,8 @@ import { STAKE_EVENTS, STAKE_LABELS } from '@/services/analytics/events/stake'
 import { Tooltip } from '@mui/material'
 import { BRIDGE_EVENTS, BRIDGE_LABELS } from '@/services/analytics/events/bridge'
 import { EARN_EVENTS, EARN_LABELS } from '@/services/analytics/events/earn'
-import { isNonCriticalUpdate } from '@safe-global/utils/utils/chains'
+import { FEATURES, isNonCriticalUpdate } from '@safe-global/utils/utils/chains'
+import useSharedUiOrigin from '@/hooks/useSharedUiOrigin'
 
 const getSubdirectory = (pathname: string): string => {
   return pathname.split('/')[1]
@@ -47,16 +50,24 @@ const Navigation = (): ReactElement | null => {
   const currentSubdirectory = getSubdirectory(router.pathname)
   const queueSize = useQueuedTxsLength()
   const isBlockedCountry = useContext(GeoblockingContext)
+  const isDataMigrationPromoEnabled = useHasFeature(FEATURES.DATA_MIGRATION_PROMO)
+  const sharedUiOrigin = useSharedUiOrigin()
+  const { isHinting, stopHint } = useMigrationLinkHint()
 
   const visibleNavItems = useMemo(() => {
-    return navItems.filter((item) => {
+    const items = navItems.filter((item) => {
       if (isBlockedCountry && geoBlockedRoutes.includes(item.href)) {
         return false
       }
 
       return isRouteEnabled(item.href, chain)
     })
-  }, [chain, isBlockedCountry])
+
+    if (!isDataMigrationPromoEnabled || !sharedUiOrigin) return items
+
+    // Keep Settings last
+    return [...items.slice(0, -1), getProtofireMultisigNavItem(sharedUiOrigin), ...items.slice(-1)]
+  }, [chain, isBlockedCountry, isDataMigrationPromoEnabled, sharedUiOrigin])
 
   const enabledNavItems = useMemo(() => {
     return safe.deployed
@@ -129,7 +140,8 @@ const Navigation = (): ReactElement | null => {
           >
             <div>
               <ListItemButton
-                sx={{ padding: 0 }}
+                sx={{ padding: 0, ...(item.hint && isHinting && migrationLinkHintSx) }}
+                onAnimationEnd={item.hint ? stopHint : undefined}
                 disabled={isDisabled}
                 selected={isSelected}
                 onClick={isDisabled ? undefined : () => handleNavigationClick(item)}
